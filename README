@@ -1,0 +1,46 @@
+### How to use this tool to install nginx and configure it to be a reverse-proxy #####
+
+This tool is only supproted on Centos 7 and 8. 
+It has been tested on IBM Cloud Centos7 and 8 VSIs.
+
+The tool will install nginx and configure it to be a reverse-proxy to be used by AWS or IBMClout CLI to access Cloud Object Storage (COS) buckets on private subnet.
+AWS cli installation and configuratons are not part of this installation.
+
+Steps:
+
+1. Update the parameters in the "parameters.txt" file to meet you specific need. It is recommended to change the password variable from the default given.
+
+NOTE:  The cos_endpoint parameter must be in the same GEO as your COS bucket you are trying to reach (unless your COS bucket is Regional), etc. 
+If you cannot access COS via the aws cli via this reverse-proxy, then try changing and updating this parameter and retun the setup.sh script..
+After installation is complete you can update the value of the Cos_endpoint and rerun the ./setup.sh as many time as you wish
+The tool will update the nginx.conf file with the new cos_endpoint and restart the service.
+
+2. Download (vis scp or other methods) all the files and folders to the target Centos VSI root directory which you wish to make into a reverse proxy 
+
+3. Login to the target VSI as root and Run ./setup.sh to start installation on the target VSI.
+
+4. The encryption files are all placed on /root folder and are called acstest.xxx. 
+You will need to share the .crt with IBM i Admin to provision it in IBM before you can use the reverse-proxy.
+No need for .crt for AIX server to access COS via reverse-proxy.
+
+- acstest.crt  
+- acstest.csr 
+- acstest.key
+
+List of COS Private  Endpoints:
+
+US South 	Private 	s3.private.us-south.cloud-object-storage.appdomain.cloud
+US East 	Private 	s3.private.us-east.cloud-object-storage.appdomain.cloud
+EU UK   	Private 	s3.private.eu-gb.cloud-object-storage.appdomain.cloud
+EU Germany 	Private 	s3.private.eu-de.cloud-object-storage.appdomain.cloud
+AP Australia 	Private 	s3.private.au-syd.cloud-object-storage.appdomain.cloud
+AP Tokyo 	Private 	s3.private.jp-tok.cloud-object-storage.appdomain.cloud
+AP Osaka 	Private 	s3.private.jp-osa.cloud-object-storage.appdomain.cloud
+VPC COS Direct endpoint:
+
+U.S. South 	s3.direct.us-south.cloud-object-storage.appdomain.cloud
+U.S. East 	s3.direct.us-east.cloud-object-storage.appdomain.cloud
+E.U. UK  	s3.direct.eu-gb.cloud-object-storage.appdomain.cloud
+E.U. Germany 	s3.direct.eu-de.cloud-object-storage.appdomain.cloud
+A.P. Australia 	s3.direct.au-syd.cloud-object-storage.appdomain.cloud
+A.P. Japan 	s3.direct.jp-tok.cloud-object-storage.appdomain.cloud
