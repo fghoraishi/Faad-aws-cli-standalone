@@ -93,3 +93,10 @@
   when: ansible_facts['distribution'] == "CentOS" or ansible_facts['distribution'] == "RedHat" 
   tags: update
 
+#- name: The acstest.crt files is located on the home directory. This file is to be used to configure IBM i servers
+#  shell: "cat ~/acstest.crt"
+#  register: output
+
+#  name: Print .crt certificate to be used for IBM i configuation
+#` debug:
+#    var: output.stdout
