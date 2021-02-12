@@ -20,9 +20,7 @@ then
          yum -y upgrade
          yum -y install python36
          yum -y install ansible
-#        yum -y install psmisc
          yum -y install nginx
-#        pip3 install selinux
          yum -y upgrade
    else
          echo ##############################################
@@ -35,10 +33,8 @@ then
          yum -y install python36
          pip3 install ansible
          pip3 install nginx
-#        yum -y install ansible
-#        yum -y install psmisc
+         yum -y install ansible
          yum -y install nginx
-#        pip3 install selinux
          yum -y upgrade
    fi
 

@@ -2,34 +2,47 @@
 # You can change the cos_endpoint parameter after instllation, the script will then just update the nginx.conf file with new info and restart nginx
 # Change password to make sure your certificates are secure
 # You can only change "encypt and rsa" variables first time you run this script.
+#
+############################ Input parametres ######################
 
-############################ Update parametres ######################
-cos_endpoint="https://s3.private.us-east.cloud-object-storage.appdomain.cloud"
+# Classic VSI endpoint
+#cos_endpoint="https://s3.private.us-east.cloud-object-storage.appdomain.cloud"
+
+# VPC VSI endpoint
+cos_endpoint="https://s3.direct.us-south.cloud-object-storage.appdomain.cloud"
+
 password="test123"
 encrypt="sha256"
 rsa=2048
 
+# Optionally Provide your HMAC COS credentials if you with to install AWS CLI to access COS.
+# You will need to run a sepearte install command to install AWS ClI:
+# ./install_awscli_standalone.sh
+
+aws_access_key_id=1dc385a5953ae43
+aws_secret_access_key=0d5eb4721ea6a8948
 
 
 ######################## INFO #########################################
 #Other COS endpoints:
+#
 #Regional:
 
-#US South 	Private 	s3.private.us-south.cloud-object-storage.appdomain.cloud
-#US East 	Private 	s3.private.us-east.cloud-object-storage.appdomain.cloud
-#EU UK n 	Private 	s3.private.eu-gb.cloud-object-storage.appdomain.cloud
-#EU Germany 	Private 	s3.private.eu-de.cloud-object-storage.appdomain.cloud
-#AP Australia 	Private 	s3.private.au-syd.cloud-object-storage.appdomain.cloud
-#AP Tokyo 	Private 	s3.private.jp-tok.cloud-object-storage.appdomain.cloud
-#AP Osaka 	Private 	s3.private.jp-osa.cloud-object-storage.appdomain.cloud
+#US South       Private         https://s3.private.us-south.cloud-object-storage.appdomain.cloud
+#US East        Private         https://s3.private.us-east.cloud-object-storage.appdomain.cloud
+#EU UK n        Private         https://s3.private.eu-gb.cloud-object-storage.appdomain.cloud
+#EU Germany     Private         https://s3.private.eu-de.cloud-object-storage.appdomain.cloud
+#AP Australia   Private         https://s3.private.au-syd.cloud-object-storage.appdomain.cloud
+#AP Tokyo       Private         https://s3.private.jp-tok.cloud-object-storage.appdomain.cloud
+#AP Osaka       Private         https://s3.private.jp-osa.cloud-object-storage.appdomain.cloud
 
 
 #Direct for VPC access:
 
-#US South 	Direct 	s3.direct.us-south.cloud-object-storage.appdomain.cloud
-#US East 	Direct 	s3.direct.us-east.cloud-object-storage.appdomain.cloud
-#EU UK  	Direct 	s3.direct.eu-gb.cloud-object-storage.appdomain.cloud
-#EU Germany 	Direct 	s3.direct.eu-de.cloud-object-storage.appdomain.cloud
-#AP Australia 	Direct 	s3.direct.au-syd.cloud-object-storage.appdomain.cloud
-#AP Tokyo 	Direct 	s3.direct.jp-tok.cloud-object-storage.appdomain.cloud
-#AP Osaka 	Direct 	s3.direct.jp-osa.cloud-object-storage.appdomain.cloud
+#US South       Direct  https://s3.direct.us-south.cloud-object-storage.appdomain.cloud
+#US East        Direct  https://s3.direct.us-east.cloud-object-storage.appdomain.cloud
+#EU UK          Direct  https://s3.direct.eu-gb.cloud-object-storage.appdomain.cloud
+#EU Germany     Direct  https://s3.direct.eu-de.cloud-object-storage.appdomain.cloud
+#AP Australia   Direct  https://s3.direct.au-syd.cloud-object-storage.appdomain.cloud
+#AP Tokyo       Direct  https://s3.direct.jp-tok.cloud-object-storage.appdomain.cloud
+#AP Osaka       Direct  https://s3.direct.jp-osa.cloud-object-storage.appdomain.cloud
