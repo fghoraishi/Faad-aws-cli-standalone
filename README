@@ -33,7 +33,9 @@ STEPS:
 To make a server into a reverse-proxy server:
 
 -  copy this tar file to the target server where you want to make into a reverse-proxy
--  untar the package " tar xvfg <filename>"
+
+-  untar the package " tar -xzvf <filename.tar.gz>"
+
 -  Update the parameters in the "parameters.txt" file to meet you specific need. It is recommended to change the password variable from the default given.
 
 -  Login to the target VSI as root and Run ./install.sh to start installation on the target VSI.
