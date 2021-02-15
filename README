@@ -1,17 +1,24 @@
 ### How to use this tool to install nginx and configure it to be a reverse-proxy #####
 
-This tool will install a Reverse-Porxy on you system.
+This tool will install a Reverse-Porxy on your system.
 Reverse-proxy is used by Power VSI to connect to COS buckets via the Private subnet for such applications as back and restore of AIX and IBM i servers.
-
-Requirment:
-Intenet access: this is needed to install the nginx and ansible packages. You can disable internet access after reverse-proxy is installed.
-This tool is only supproted on Centos 7 and 8 and Redhat 7 and 8.. 
+The support suports both Classic and VPC VSI. Intenet access is temparorly required but can be disabled after the reverse-proxy is installed.
+This tool uses both shell scripting and ansible playbook (ansible will be also automatically installed on the server).
 
 
 ###########################
+
+REQUIREMENT:
+
+- Intenet access: this is needed to install the nginx and ansible packages. You can disable internet access after reverse-proxy is installed.
+- This tool is only supproted on Centos 7 and 8 and Redhat 7 and 8.. 
+
+
+###########################
+
 There are three capabilities in this tool:
 
-1. The tool can be used to install nginx and configure it to be a reverse-proxy to be used by Power System VSI's using AWS CLI to access Cloud Object Storage (COS) buckets on private subnet.
+1. This tool can be used to install nginx and configure it to be a reverse-proxy to be used by Power System VSI's using AWS CLI to access Cloud Object Storage (COS) buckets on private subnet.
 
 2. This tool can also be used to change and update the COS endpoint defined in the nginx.conf file after the reverse-proxy is successufully installed. You can repeat this step as many times as you wish.
    Simply change the value of the cos_enpoint parameter in the parameters.txt file and rerun the install.sh.
@@ -21,7 +28,7 @@ There are three capabilities in this tool:
 
 ############################
 
-Steps:
+STEPS:
 
 To make a server into a reverse-proxy server:
 
@@ -29,17 +36,13 @@ To make a server into a reverse-proxy server:
 -  untar the package " tar xvfg <filename>"
 -  Update the parameters in the "parameters.txt" file to meet you specific need. It is recommended to change the password variable from the default given.
 
-NOTE:  The cos_endpoint parameter must be the one in the same GEO as your COS bucket you are trying to reach (unless your COS bucket is Regional), etc. 
-If you cannot access COS via the aws cli via this reverse-proxy, then try changing and updating cos_endpoint parameter and retrun the install.sh script..
-The tool will update the nginx.conf file with the new cos_endpoint and restart the service.
-
 -  Login to the target VSI as root and Run ./install.sh to start installation on the target VSI.
 
 -  The encryption files are all placed on /root folder and are called acstest.xxx. 
 
 -  The output will show you the certificate file to be used for IBM i provisioning
 
-To install standalone AWS CLI:
+To install standalone AWS CLI on a server:
 
 To test your reverse-proxy, you will need to install and configure a AWS CLI on another system like AIX etc.
 This toll has the AWS CLI code so it can install it on any server without internet access.
@@ -55,30 +58,9 @@ This toll has the AWS CLI code so it can install it on any server without intern
 aws --no-verify-ssl --endpoint-url https://<private ip of reverse proxy> s3 ls
 
 
-##############################$
+##############################
+
 You will need to share the .crt with IBM i Admin to provision it in IBM before you can use the reverse-proxy.
 No need for .crt for AIX server to access COS via reverse-proxy.
 
 - acstest.crt  
-- acstest.csr 
-- acstest.key
-
-##############################
-Sample List of Classic VSI COS Private Endpoints:
-
-US South 	Private 	s3.private.us-south.cloud-object-storage.appdomain.cloud
-US East 	Private 	s3.private.us-east.cloud-object-storage.appdomain.cloud
-EU UK   	Private 	s3.private.eu-gb.cloud-object-storage.appdomain.cloud
-EU Germany 	Private 	s3.private.eu-de.cloud-object-storage.appdomain.cloud
-AP Australia 	Private 	s3.private.au-syd.cloud-object-storage.appdomain.cloud
-AP Tokyo 	Private 	s3.private.jp-tok.cloud-object-storage.appdomain.cloud
-AP Osaka 	Private 	s3.private.jp-osa.cloud-object-storage.appdomain.cloud
-
-Sample list o fVPC VSI COS Direct endpoint:
-
-U.S. South 	s3.direct.us-south.cloud-object-storage.appdomain.cloud
-U.S. East 	s3.direct.us-east.cloud-object-storage.appdomain.cloud
-E.U. UK  	s3.direct.eu-gb.cloud-object-storage.appdomain.cloud
-E.U. Germany 	s3.direct.eu-de.cloud-object-storage.appdomain.cloud
-A.P. Australia 	s3.direct.au-syd.cloud-object-storage.appdomain.cloud
-A.P. Japan 	s3.direct.jp-tok.cloud-object-storage.appdomain.cloud
