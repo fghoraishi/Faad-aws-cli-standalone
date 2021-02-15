@@ -3,6 +3,21 @@
 # source parameters.txt file
 . ./parameters.txt
 
+### Test internet connection
+
+ping -c 2 google.com  &> /dev/null
+  if [ $? -eq 0 ]; then
+      echo "ping is ok"
+  else
+      echo "Ping to google.com failed. You msut be connected to the public internet before using this tool to install reverse-proxy."
+      echo "The tool needs to install ansible and nginx packages"
+      exit
+  fi
+
+echo "#############################"
+echo "Installng Reverse-proxy server"
+echo "#############################"
+
 # Find OS type and OS Level
 OS=`cat /etc/os-release | grep ^ID= | awk -F\" {'print $2}'`
 
@@ -19,8 +34,23 @@ then
          subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"  --enable "rhel-ha-for-rhel-*-server-rpms"
          yum -y upgrade
          yum -y install python36
-         yum -y install ansible
-         yum -y install nginx
+         yum  list nginx | grep nginx &> /dev/null
+             if [ $? -eq 0 ]; then
+                 echo "nginx is in yum repo"
+                 yum -y install nginx
+             else
+                 echo "nginx is not in yum repo. Installing nginx via pip3 method"
+                 pip3 install nginx
+             fi
+
+         yum  list ansible | grep ansible &> /dev/null
+             if [ $? -eq 0 ]; then
+                 echo "Ansible is in yum repo"
+                 yum -y install ansible
+             else
+                 echo "Ansible is not in yum repo. Installing Ansible via pip3 method"
+                 pip3 install ansible 
+             fi
          yum -y upgrade
    else
          echo ##############################################
@@ -31,10 +61,23 @@ then
          dnf config-manager --set-enabled powertools
          yum -y upgrade
          yum -y install python36
-         pip3 install ansible
-         pip3 install nginx
-         yum -y install ansible
-         yum -y install nginx
+         yum  list nginx | grep nginx &> /dev/null
+             if [ $? -eq 0 ]; then
+                 echo "nginx is in yum repo"
+                 yum -y install nginx
+             else
+                 echo "nginx is not in yum repo"
+                 pip3 install nginx
+             fi
+
+         yum  list ansible | grep ansible &> /dev/null
+             if [ $? -eq 0 ]; then
+                 echo "Ansible is in yum repo"
+                 yum -y install ansible
+             else
+                 echo "Ansible is not in yum repo"
+                 pip3 install ansible 
+             fi
          yum -y upgrade
    fi
 

@@ -16,6 +16,8 @@
 - name: clean any port associated with 443 if previously configured 
   shell: 'fuser -k 443/tcp'
   ignore_errors: True
+  no_log: True
+  failed_when: False
   when: 
     - p.stat.exists == True 
     - ansible_facts['distribution'] == "CentOS" or ansible_facts['distribution'] == "RedHat"
@@ -56,7 +58,7 @@
   register: pp
 
 - name: Create the csr file based on the previous key file
-  shell: 'openssl req -new -config ~myopenssl.cnf -newkey rsa:2048 -nodes -keyout ~/acstest.key -out ~/acstest.csr'
+  shell: 'openssl req -new -config ~/myopenssl.cnf -newkey rsa:2048 -nodes -keyout ~/acstest.key -out ~/acstest.csr'
 
   when: 
     - pp.stat.exists == False 
