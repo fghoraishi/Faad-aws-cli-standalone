@@ -5,28 +5,11 @@ Create:
 Faad Ghoraishi
 faad.ghoraishi@ibm.com
 Feb 2021
-IBM innternal use only
+IBM internal use only
 
-
-###########################
 ### How to use this tool to install nginx and configure it to be a reverse-proxy #####
 
 This tool will install a Reverse-Porxy on your system.
-Reverse-proxy is used by Power VSI to connect to COS buckets via the Private subnet for such applications as back and restore of AIX and IBM i servers.
-The support suports both Classic and VPC VSI. Intenet access is temparorly required but can be disabled after the reverse-proxy is installed.
-This tool uses both shell scripting and ansible playbook (ansible will be also automatically installed on the server).
-
-
-###########################
-
-REQUIREMENT:
-
-- Intenet access: this is needed to install the nginx and ansible packages. You can disable internet access after reverse-proxy is installed.
-- This tool is only supproted on Centos 7 and 8 and Redhat 7 and 8.. 
-
-
-###########################
-
 There are three capabilities in this tool:
 
 1. This tool can be used to install nginx and configure it to be a reverse-proxy to be used by Power System VSI's using AWS CLI to access Cloud Object Storage (COS) buckets on private subnet.
@@ -36,6 +19,17 @@ There are three capabilities in this tool:
 
 3. This tool can also install and configure Standalone version of AWS CLI on a server. Run "install_awscli_standalone.sh" to install and configure AWS CLI on AIX,Redhat and Centos VSIs.
    This toll has the AWS CLI binaries so it can install it on any server without internet access.
+
+Reverse-proxy is used by Power VSI to connect to COS buckets via the Private subnet for such applications as back and restore of AIX and IBM i servers.
+The support suports both Classic and VPC VSI. Intenet access is temparorly required but can be disabled after the reverse-proxy is installed.
+This tool uses both shell scripting and ansible playbook (ansible will be also automatically installed on the server).
+
+###########################
+
+REQUIREMENT:
+
+- Intenet access: this is needed to install the nginx and ansible packages. You can disable internet access after reverse-proxy is installed.
+- This tool is only supproted on Centos 7 and 8 and Redhat 7 and 8.. 
 
 ############################
 
