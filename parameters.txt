@@ -15,7 +15,7 @@ password="test123"
 encrypt="sha256"
 rsa=2048
 
-# Optionally Provide your HMAC COS credentials if you with to install AWS CLI to access COS.
+# Optionally Provide your HMAC COS credentials if you wish to install AWS CLI to access COS.
 # You will need to run a sepearte install command to install AWS ClI:
 # ./install_awscli_standalone.sh
 
