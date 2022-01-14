@@ -5,10 +5,7 @@
 #
 ############################ Input parametres ######################
 
-# Classic VSI endpoint
-#cos_endpoint="https://s3.private.us-east.cloud-object-storage.appdomain.cloud"
-
-# VPC VSI endpoint
+# VPC COS endpoint
 cos_endpoint="https://s3.direct.us-south.cloud-object-storage.appdomain.cloud"
 
 password="test123"

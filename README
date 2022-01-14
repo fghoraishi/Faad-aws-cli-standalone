@@ -42,6 +42,7 @@ To make a server into a reverse-proxy server:
 -  untar the package " tar -xzvf <filename.tar.gz>"
 
 -  Update the parameters in the "parameters.txt" file to meet you specific need. It is recommended to change the password variable from the default given.
+   eg. usually only thing to update is the COS endpoint. Make sure its in http:// format.
 
 -  Login to the target VSI as root and Run ./install.sh to start installation on the target VSI.
 
