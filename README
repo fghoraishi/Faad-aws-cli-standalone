@@ -7,48 +7,9 @@ faad.ghoraishi@ibm.com
 Feb 2021
 IBM internal use only
 
-### How to use this tool to install nginx and configure it to be a reverse-proxy #####
 
-This tool will install a Reverse-Porxy on your system.
-There are three capabilities in this tool:
-
-1. This tool can be used to install nginx and configure it to be a reverse-proxy to be used by Power System VSI's using AWS CLI to access Cloud Object Storage (COS) buckets on private subnet.
-
-2. This tool can also be used to change and update the COS endpoint defined in the nginx.conf file after the reverse-proxy is successufully installed. You can repeat this step as many times as you wish.
-   Simply change the value of the cos_enpoint parameter in the parameters.txt file and rerun the install.sh.
-
-3. This tool can also install and configure Standalone version of AWS CLI on a server. Run "install_awscli_standalone.sh" to install and configure AWS CLI on AIX,Redhat and Centos VSIs.
+This tool can also install and configure Standalone version of AWS CLI on a server. Run "install_awscli_standalone.sh" to install and configure AWS CLI on AIX,Redhat and Centos VSIs.
    This toll has the AWS CLI binaries so it can install it on any server without internet access.
-
-Reverse-proxy is used by Power VSI to connect to COS buckets via the Private subnet for such applications as back and restore of AIX and IBM i servers.
-The support suports both Classic and VPC VSI. Intenet access is temparorly required but can be disabled after the reverse-proxy is installed.
-This tool uses both shell scripting and ansible playbook (ansible will be also automatically installed on the server).
-
-###########################
-
-REQUIREMENT:
-
-- Intenet access: this is needed to install the nginx and ansible packages. You can disable internet access after reverse-proxy is installed.
-- This tool is only supproted on Centos 7 and 8 and Redhat 7 and 8.. 
-
-############################
-
-STEPS:
-
-To make a server into a reverse-proxy server:
-
--  copy this tar file to the target server where you want to make into a reverse-proxy
-
--  untar the package " tar -xzvf <filename.tar.gz>"
-
--  Update the parameters in the "parameters.txt" file to meet you specific need. It is recommended to change the password variable from the default given.
-   eg. usually only thing to update is the COS endpoint. Make sure its in http:// format.
-
--  Login to the target VSI as root and Run ./install.sh to start installation on the target VSI.
-
--  The encryption files are all placed on /root folder and are called acstest.xxx. 
-
--  The output will show you the certificate file to be used for IBM i provisioning
 
 To install standalone AWS CLI on a server:
 
