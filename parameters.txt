@@ -3,15 +3,7 @@
 # Change password to make sure your certificates are secure
 # You can only change "encypt and rsa" variables first time you run this script.
 #
-############################ Input parametres ######################
-
-# VPC COS endpoint
-cos_endpoint="https://s3.direct.us-south.cloud-object-storage.appdomain.cloud"
-
-password="test123"
-encrypt="sha256"
-rsa=2048
-
+############################ Input parametres #####################
 # Optionally Provide your HMAC COS credentials if you wish to install AWS CLI to access COS.
 # You will need to run a sepearte install command to install AWS ClI:
 # ./install_awscli_standalone.sh
